@@ -51,19 +51,30 @@
     }
   }
 
-// Add unique identifiers to the "Read More" buttons and card containers
-const readMoreBtns = document.querySelectorAll('.read-more-btn');
-const cards = document.querySelectorAll('.card');
+// Add event listener to the document
+document.addEventListener('click', function(event) {
+  // Check if the clicked element has the class 'read-more-btn'
+  if (event.target.classList.contains('read-more-btn')) {
+    // Find the closest parent element with the class 'card'
+    const card = event.target.closest('.card');
 
-// Add event listeners to each "Read More" button
-readMoreBtns.forEach(function(button, index) {
-  button.addEventListener('click', function() {
-    const invisibleItems = cards[index].querySelectorAll('.invisible');
+    // Find all the elements with the class 'invisible' within the card
+    const invisibleItems = card.querySelectorAll('.invisible');
+
+    // Toggle the visibility of each 'invisible' item
     invisibleItems.forEach(function(item) {
-      item.classList.add('visible');
+      item.classList.toggle('visible');
     });
-  });
+
+    // Find the closest <ul> or <ol> element within the card
+    const list = card.querySelector('ul, ol');
+
+    // Toggle the 'with-bullets' class to show/hide bullet numbers
+    list.classList.toggle('with-bullets');
+  }
 });
+
+
 
   
         

@@ -8,7 +8,7 @@
   scroll-behavior: smooth;
 }
 
-section{
+section, .sticky{
   padding: 100px 200px;
 }
 
@@ -116,6 +116,7 @@ header{
   justify-content: space-between;
   align-items: center;
   transition: 0.5s ease;
+  height: 70px;
 }
 
 header.sticky{
@@ -123,12 +124,23 @@ header.sticky{
   padding: 10px 200px;
 }
 
+header{
+  overflow: hidden;
+}
+
+
 header .brand{
   color: #fff;
   font-size: 1.8em;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
+  overflow: hidden;
+}
+
+header .brand img {
+  height: 100px;
+  /* mix-blend-mode: color-burn; */
 }
 
 header .navigation{
@@ -163,7 +175,7 @@ body{
   flex-direction: column;
 }
 
-.section-title{
+.section-title, .services-title{
   position: relative;
   color: #3a6cf4;
   font-size: 2.2em;
@@ -171,7 +183,7 @@ body{
   margin-bottom: 60px;
 }
 
-.section-title:before{
+.section-title:before, .services-title:before{
   content: '';
   position: absolute;
   top: 56px;
@@ -182,7 +194,7 @@ body{
   transform: translateX(-50%);
 }
 
-.section-title:after{
+.section-title:after, .services-title:after{
   content: '';
   position: absolute;
   top: 50px;
@@ -193,6 +205,15 @@ body{
   background: #3a6cf4;
   transform: translateX(-50%);
 }
+@media screen and (max-width: 500px){
+  .services-title:before {
+    top: 120px;
+  }
+  .services-title:after{
+    top: 114px;
+  }
+}
+
 
 .about .content{
   position: relative;
@@ -586,9 +607,8 @@ body{
     transition: 0.3s ease;
   }
 
-  .menu-btn{
+  .menu-btn {
     position: absolute;
-    background: url(menu.png)no-repeat;
     background-size: 30px;
     background-position: center;
     width: 40px;
@@ -597,16 +617,37 @@ body{
     margin: 0 20px;
     cursor: pointer;
     transition: 0.3s ease;
+    display: none;
   }
 
-  .menu-btn.active{
+
+  @media screen and (max-width: 1040px) {
+    .menu-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  @media screen and (min-width: 1040px) {
+    .menu-btn {
+      display: none;
+    }
+  }
+
+  .menu-btn.active {
     z-index: 999;
-    background: url(close.png)no-repeat;
     background-size: 25px;
     background-position: center;
     transition: 0.3s ease;
     filter: invert(1);
   }
+
+  .with-bullets {
+    list-style: decimal;
+  }
+  
+  
 
   section{
     padding: 80px 20px;
@@ -835,12 +876,15 @@ form {
   .partners div {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 20px;
   }
 
   .partners div img {
-    height: 90px;
+    height: 60px;
   }
+
+
   
 
   
